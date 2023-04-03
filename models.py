@@ -20,14 +20,16 @@ class Supplier(Model):
 
 # create pydantic models
 
-# create pydantic models with all fields for admin
+# create a pydantic model from the Product model with all the fields
 product_pydantic = pydantic_model_creator(Product, name="Product")
 
-# create pydantic models with exclude fields for clients, so they can't change the id
-product_in_pydantic = pydantic_model_creator(Product, name="ProductIn", exclude_readonly=True)
+# create a pydantic model from the Product model with all the fields except the id, this is used for creating a new product
+# thats why we exclude the readonly fields, so that the id is not included
+product_pydanticIn = pydantic_model_creator(Product, name="ProductIn", exclude_readonly=True)
 
-# create pydantic models with all fields for admin
+# create a pydantic model from the Supplier model with all the fields
 supplier_pydantic = pydantic_model_creator(Supplier, name="Supplier")
 
-# create pydantic models with exclude fields for clients, so they can't change the id
-supplier_in_pydantic = pydantic_model_creator(Supplier, name="SupplierIn", exclude_readonly=True)
+# create a pydantic model from the Supplier model with all the fields except the id, this is used for creating a new supplier
+# thats why we exclude the readonly fields, so that the id is not included
+supplier_pydanticIn = pydantic_model_creator(Supplier, name="SupplierIn", exclude_readonly=True)
