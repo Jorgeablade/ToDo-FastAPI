@@ -1,46 +1,53 @@
 from fastapi import FastAPI
 from tortoise.contrib.fastapi import register_tortoise # Allow us to register the models
-from models import(supplier_pydantic, supplier_pydanticIn, Supplier)
+from models import(task_pydantic, task_pydanticIn, task) # Import the models
+
+# Jinja2 templates
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 
 # Create the app
 app = FastAPI()
 
+# Hello world
 @app.get('/')
-def index():
-    return {"message": "got to /docs or /redoc for the API documentation"}
+async def hello_world():
+    return {"message": "Hello World"}
 
-@app.post('/supplier')
+@app.post('/task')
 # We create the function with sypplier_pydanticIn, because we are exliuding the id
-async def add_supplier(supplier_info: supplier_pydanticIn):
-    supplier_obj = await Supplier.create(**supplier_info.dict(exclude_unset=True))
-    # But in the response we want to know the id, so we use supplier_pydantic
-    response = await supplier_pydantic.from_tortoise_orm(supplier_obj)
+async def add_task(task_info: task_pydanticIn):
+    task_obj = await task.create(**task_info.dict(exclude_unset=True))
+    # But in the response we want to know the id, so we use task_pydantic
+    response = await task_pydantic.from_tortoise_orm(task_obj)
     return {"status": "success", "data": response}
 
-# Get all suppliers
-@app.get('/supplier')
-async def get_all_suppliers():
-    response = await supplier_pydantic.from_queryset(Supplier.all())
+# Get all tasks
+@app.get('/task')
+async def get_all_tasks():
+    response = await task_pydantic.from_queryset(task.all())
     return {"status": "success", "data": response}
 
-# Get a single supplier
-@app.get('/supplier/{supplier_id}')
-async def get_supplier(supplier_id: int):
-    response = await supplier_pydantic.from_queryset_single(Supplier.get(id=supplier_id))
+# Get a single task
+@app.get('/task/{task_id}')
+async def get_task(task_id: int, request: Request):
+    response = await task_pydantic.from_queryset_single(task.get(id=task_id))
     return {"status": "success", "data": response}
 
-# Update a supplier
-@app.put('/supplier/{supplier_id}')
-async def update_supplier(supplier_id: int, update_info: supplier_pydanticIn):
-    await Supplier.filter(id=supplier_id).update(**update_info.dict(exclude_unset=True))
-    response = await supplier_pydantic.from_queryset_single(Supplier.get(id=supplier_id))
+# Update a task
+@app.put('/task/{task_id}')
+async def update_task(task_id: int, update_info: task_pydanticIn):
+    await task.filter(id=task_id).update(**update_info.dict(exclude_unset=True))
+    response = await task_pydantic.from_queryset_single(task.get(id=task_id))
     return {"status": "success", "data": response}
 
-# Delete a supplier
-@app.delete('/supplier/{supplier_id}')
-async def delete_supplier(supplier_id: int):
-    await Supplier.filter(id=supplier_id).delete()
-    return {"status": "success", "message": "supplier deleted"}
+# Delete a task
+@app.delete('/task/{task_id}')
+async def delete_task(task_id: int):
+    await task.filter(id=task_id).delete()
+    return {"status": "success", "message": "task deleted"}
 
 # Register the models with tortoise
 register_tortoise(
