@@ -14,3 +14,5 @@ starlette==0.26.1
 tortoise-orm==0.19.3
 typing_extensions==4.5.0
 uvicorn==0.21.1
+fastapi
+tortoise-orm
