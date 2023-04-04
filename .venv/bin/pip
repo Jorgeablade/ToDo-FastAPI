@@ -1,4 +1,4 @@
-#!/home/picolo/Desktop/CRUD_FastAPI_React/.venv/bin/python3
+#!/home/picolo/Desktop/.venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
