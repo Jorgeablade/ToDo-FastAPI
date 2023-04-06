@@ -1,7 +1,7 @@
 from sqlalchemy import Boolean, Column, Integer, String
 from sqlalchemy.sql.sqltypes import DateTime
 import datetime
-from database import Base
+from db import Base
  
 class Todo(Base):
     __tablename__ = "todos"
