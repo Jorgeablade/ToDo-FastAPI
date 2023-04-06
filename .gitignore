@@ -1,1 +1,4 @@
 .env
+.vevn
+__pycache__
+db.sqlite
