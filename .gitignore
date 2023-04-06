@@ -1,4 +1,4 @@
 .env
-.vevn
-__pycache__
+.vevn/
+__pycache__/
 db.sqlite
