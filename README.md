@@ -1,4 +1,4 @@
-<h1 align="center" style="color:white;">CRUD_FastAPI</h1>
+<h1 align="center" style="color:white;">ToDo-FastAPI</h1>
 
 <div align="center">
   
@@ -8,6 +8,7 @@
 
 
 In this repository you will find all the necesary recourse to test and run this projet by yourself
+<br>
 This project use Python 3.9
 
 
