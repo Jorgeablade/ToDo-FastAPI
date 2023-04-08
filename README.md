@@ -1,4 +1,4 @@
-<h1 align="center" style="color:white;">CRUD_FastAPI_React</h1>
+<h1 align="center" style="color:white;">CRUD_FastAPI</h1>
 
 <div align="center">
   
@@ -8,6 +8,7 @@
 
 
 In this repository you will find all the necesary recourse to test and run this projet by yourself
+This project use Python 3.9
 
 
 ## 📝 Content
@@ -19,22 +20,31 @@ In this repository you will find all the necesary recourse to test and run this 
 
 ## 🧐 Why? <a name = "about"></a>
 
-This is just a super tiny project to try to get more knowledge about FastAPI, React and because is for a school project so yeah
+This is just a super tiny project to try to get more knowledge about FastAPI, and because is for a school project, so, yeah super funny
+
+Since it's not finished, there are some useless code commented.
 
 ## 🏁 How to clone it and run it <a name = "getting_started"></a>
 
- Create a venv on your fav IDE or whatever
  Clone the repository where you are gonna work
     
 ```bash
  git clone https://github.com/Jorgeablade/CRUD_FastAPI_React.git
 ```
 
-Install the requirements
+Create or activate the venv. In case you wanna create a new venv, just delete the one you cloned and create a new one.
+But if you are keeping this one, run:
     
 ```bash
- pip install -r requirements.txt
+ ./.venv/Scripts/Activate.ps1 # If you are in Windows
+ source ./.venv/Scripts/activate # If Linux distribution
 ```
+
+Create a random key using random_key.py. This will create a .env with SECRET=blablablablablabla :)
+
+```bash
+ ./random_key.py
+``` 
     
  And run the project
     
@@ -45,8 +55,8 @@ Install the requirements
 ## ⛏️ Build with <a name = "built_using"></a>
 
 - [FastAPI](https://fastapi.tiangolo.com/az/)
-- [React](https://es.reactjs.org/)
-- [Tortoise ORM](https://tortoise.github.io/)
+- [hashlib](https://docs.python.org/3/library/hashlib.html)
+- [Jinja2]([https://fastapi.tiangolo.com/az/](https://jinja.palletsprojects.com/en/3.1.x/))
 - [Pydantic](https://docs.pydantic.dev/)
 
 ## ✍️ Author <a name = "authors"></a>
