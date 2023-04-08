@@ -56,7 +56,7 @@ Create a random key using random_key.py. This will create a .env with SECRET=bla
 
 - [FastAPI](https://fastapi.tiangolo.com/az/)
 - [hashlib](https://docs.python.org/3/library/hashlib.html)
-- [Jinja2]([https://fastapi.tiangolo.com/az/](https://jinja.palletsprojects.com/en/3.1.x/))
+- [Jinja2](https://jinja.palletsprojects.com/en/3.1.x/)
 - [Pydantic](https://docs.pydantic.dev/)
 
 ## ✍️ Author <a name = "authors"></a>
