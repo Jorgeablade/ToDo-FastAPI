@@ -13,7 +13,8 @@ InvalidUserName = HTTPException(
 
 InvalidUserPass = HTTPException(
     status_code=400,
-    detail="Incorrect username or password."
+    detail="Invalid username or password.",
+    headers={"WWW-Authenticate": "Basic"}
 )
 
 

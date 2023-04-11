@@ -1,20 +1,19 @@
-from sqlalchemy import Boolean, Column, Integer, String
-from sqlalchemy.sql.sqltypes import DateTime
 import datetime
-from db import Base
- 
-class Todo(Base):
-    __tablename__ = "todos"
- 
-    id = Column(Integer, primary_key=True, index=True)
-    title = Column(String)
-    complete = Column(Boolean, default=False)
-    # auto add date, but just, year, month, day
-    date = Column(DateTime, default=datetime.datetime.now().date())
+from passlib.hash import bcrypt
+from tortoise.models import Model
+from tortoise import fields
 
-class user(Base):
-    __tablename__ = "users"
- 
-    id = Column(Integer, primary_key=True, index=True)
-    username = Column(String)
-    password = Column(String)
+class Todo(Model):
+    id = fields.IntField(pk=True)
+    title = fields.CharField(100)
+    complete = fields.BooleanField(default=False)
+    # DateTime now()
+    # date = fields.DatetimeField(default=datetime.datetime.now)
+
+class User(Model):
+    id = fields.IntField(pk=True)
+    username = fields.CharField(100, unique=True)
+    password_hash = fields.CharField(128)
+
+    def verify_password(self, password):
+        return bcrypt.verify(password, self.password_hash)
