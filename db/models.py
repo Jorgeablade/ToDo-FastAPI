@@ -7,8 +7,7 @@ class Todo(Model):
     id = fields.IntField(pk=True)
     title = fields.CharField(100)
     complete = fields.BooleanField(default=False)
-    # DateTime now()
-    # date = fields.DatetimeField(default=datetime.datetime.now)
+    date = fields.DatetimeField(default=datetime.datetime.now)
 
 class User(Model):
     id = fields.IntField(pk=True)
