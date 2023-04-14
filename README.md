@@ -30,7 +30,7 @@ Since it's not finished, there are some useless code commented.
  Clone the repository where you are gonna work
     
 ```bash
- git clone https://github.com/Jorgeablade/CRUD_FastAPI_React.git
+ git clone https://github.com/Jorgeablade/ToDo-FastAPI.git
 ```
 
 Create or activate the venv. In case you wanna create a new venv, just delete the one you cloned and create a new one.
