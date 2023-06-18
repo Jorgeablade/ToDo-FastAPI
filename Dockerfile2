@@ -1,0 +1,27 @@
+FROM python:3.9
+
+# Instalar OpenSSH y configurar usuario y contraseña
+RUN apt-get update && apt-get install -y openssh-server
+RUN mkdir /var/run/sshd
+RUN useradd -m -s /bin/bash hola
+RUN echo 'hola:adios' | chpasswd
+RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+# SSH login fix. Otherwise user is kicked off after login
+RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
+
+ENV NOTVISIBLE "in users profile"
+RUN echo "export VISIBLE=now" >> /etc/profile
+
+# Instalar y configurar la aplicación "todo-list"
+WORKDIR /todo-list
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY ./todo ./todo
+RUN python3 ./todo/random_key.py
+
+# Exponer el puerto SSH (22) y el puerto de la aplicación (por ejemplo, 8080)
+EXPOSE 22 8000
+
+# Iniciar el servidor SSH y la aplicación "todo-list"
+CMD service ssh start && python3 ./todo/app.py
